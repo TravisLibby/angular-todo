@@ -32,7 +32,7 @@
             <input type="checkbox" ng-model="todo.complete" /> <span ng-class="{complete: todo.complete}">{{ todo.task }}</span>
             <span class="pull-right"><a href="#" ng-click="todoCtrl.deleteTodo(todo.id);"><span class="glyphicon glyphicon-remove text-danger"></span></a></span>
           </div>
-          <form ng-submit="todoCtrl.updateTodo(todo);" novalidate>
+          <form name="editTodoForm" ng-submit="editTodoForm.$valid && todoCtrl.updateTodo(todo);" novalidate>
             <input class="form-control" type="text" value="{{ todo.task }}" ng-if="todoCtrl.todoBeingEdited === todo" ng-blur="todoCtrl.stopEditing();" ng-model="todo.task" />
           </form>
         </li>
