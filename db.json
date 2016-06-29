@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "id": 2,
+      "task": "Find a job in Boston",
+      "complete": false
+    },
+    {
+      "task": "Go camping",
+      "complete": false,
+      "id": 3
+    },
+    {
+      "task": "Machine Learning",
+      "complete": false,
+      "id": 4
+    },
+    {
+      "task": "Buy water shoes",
+      "complete": false,
+      "id": 5
+    },
+    {
+      "task": "It works!",
+      "complete": false,
+      "id": 6
+    }
+  ]
+}

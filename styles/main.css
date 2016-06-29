@@ -1,0 +1,26 @@
+body {
+  margin-top: 60px;
+}
+
+.form-group {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.complete {
+  text-decoration: line-through;
+}
+
+.filters {
+  position: relative;
+}
+
+.filters > div {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.items-left {
+  position: absolute;
+  bottom: 0;
+}

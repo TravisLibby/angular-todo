@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Angular Todo</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-controller="TodoController as todoCtrl">
+
+    <div class="container">
+
+      <h1 class="text-center">Angular Todo MVC</h1>
+
+      <form class="row" name="todoForm" ng-submit="todoForm.$valid && todoCtrl.addTodo();" novalidate>
+        <div class="form-group col-xs-12 col-sm-4 col-sm-offset-4">
+          <input type="text" class="form-control" placeholder="What needs to get done?" required ng-model="todoCtrl.formData.task">
+        </div>
+      </form>
+
+      <ul class="list-group row todo-list">
+        <li class="list-group-item col-xs-12 col-sm-4 col-sm-offset-4" ng-repeat="todo in todoCtrl.todos | filter:todoCtrl.activeFilter" ng-dblclick="todoCtrl.editTodo(todo);">
+          <div ng-hide="todoCtrl.todoBeingEdited === todo">
+            <input type="checkbox" ng-model="todo.complete" /> <span ng-class="{complete: todo.complete}">{{ todo.task }}</span>
+            <span class="pull-right"><a href="#" ng-click="todoCtrl.deleteTodo(todo.id);"><span class="glyphicon glyphicon-remove text-danger"></span></a></span>
+          </div>
+          <form ng-submit="todoCtrl.updateTodo(todo);" novalidate>
+            <input class="form-control" type="text" value="{{ todo.task }}" ng-if="todoCtrl.todoBeingEdited === todo" ng-blur="todoCtrl.stopEditing();" ng-model="todo.task" />
+          </form>
+        </li>
+      </ul>
+
+      <div class="row filters">
+        <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+          <span class="items-left">
+            {{ (todoCtrl.todos | filter:{complete: false }).length }}
+            item<span ng-if="(todoCtrl.todos | filter:{complete: false }).length !== 1">s</span> left
+          </span>
+          <span class="pull-right">
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-default" ng-class="{active: todoCtrl.filterButton === 'all'}" ng-click="todoCtrl.setTab('all');">All</button>
+              <button type="button" class="btn btn-default" ng-class="{active: todoCtrl.filterButton === 'active'}"  ng-click="todoCtrl.setTab('active');">Active</button>
+              <button type="button" class="btn btn-default" ng-class="{active: todoCtrl.filterButton === 'complete'}"  ng-click="todoCtrl.setTab('completed');">Completed</button>
+            </div>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/todoController.js"></script>
+    <script src="scripts/services/todoService.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "AngularTodo",
+  "description": "A simple to-do list built with angular and bootstrap",
+  "main": "index.html",
+  "authors": [
+    "Travis Libby <travislibby@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "index.html",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
